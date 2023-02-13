@@ -3,16 +3,22 @@ import time
 
 class TwBot:
     def __init__(self, window):
-        self.stop_iteration = False
         self.wsh = comctl.Dispatch("WScript.Shell")
         self.running = True
         self.window = window
+        self.counter = 0
     
     def start(self):
-       self.running = True
+        self.running = True
+        self.counter = 0
         
     def stop(self):
         self.running = False
+        self.counter = 0
+    
+    def farm(self):
+        self.prepare_farm()
+        self.consume_farm_list()
     
     def prepare_farm(self):
         self.prepare()
@@ -21,41 +27,40 @@ class TwBot:
         self.wsh.SendKeys("{9}")
         time.sleep(2)
     
-    def farm(self, counter):
+    def consume_farm_list(self):
         if self.running:
             self.wsh.SendKeys("{m}")
-        if counter >= 1000:
+        if self.counter >= 1000:
             self.stop()
-        counter += 1
-        self.window.after(225, lambda : self.farm(counter))
+        self.counter += 1
+        self.window.after(225, lambda : self.farm())
     
     def prepare_scavange(self):
         self.prepare()
     
     def scavanger(self):
-        for j in range(4):
-            self.wsh.SendKeys("{6}")
-            time.sleep(1)
-            self.wsh.SendKeys("{7}")
-            time.sleep(2)
-            self.wsh.SendKeys("{ENTER}", 0)
-            time.sleep(2)
-        self.wsh.SendKeys("{d}")
-        time.sleep(5)
+        for i in range(7):
+            for j in range(4):
+                self.wsh.SendKeys("{6}")
+                time.sleep(1)
+                self.wsh.SendKeys("{7}")
+                time.sleep(2)
+                self.wsh.SendKeys("{ENTER}", 0)
+                time.sleep(2)
+            self.wsh.SendKeys("{d}")
+            time.sleep(5)
             
     def full(self):
-        self.farm()
-        time.sleep(5)
+        self.prepare_scavange()
         self.scavanger()
+        time.sleep(5)
+        self.prepare_farm()
+        self.farm(0)
         
-    def cancel_action(self):
-        if self.stop_iteration is False:
-            self.stop_iteration = True
-    
     def prepare(self):
+        self.start()
         self.countdown()
         self.refresh_page()
-        self.start()
         
     def countdown(self):
         for i in range(5):

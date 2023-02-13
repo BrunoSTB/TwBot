@@ -3,32 +3,13 @@ from bot import TwBot
 
 window = tk.Tk()
 twBot = TwBot(window) 
-running = True
-
-def start():
-   global running
-   running = True
-
-def stop():
-   global running
-   running = False
-    
-def scavange(counter):
-    if running:
-        twBot.scavanger()
-    if counter >= 7:
-        stop()
-    window.after(225, scavange)
     
 farm_button = tk.Button(text="Farm",
     width=30,
     height=2,
     bg="blue",
     fg="yellow",
-    command=lambda : {
-        twBot.prepare_farm(),
-        twBot.farm(0)
-        })
+    command=twBot.farm)
 farm_button.pack()
 
 scavange_button = tk.Button(text="Scavange",
@@ -37,9 +18,8 @@ scavange_button = tk.Button(text="Scavange",
     bg="green",
     fg="yellow",
     command=lambda : {
-        start(),
         twBot.prepare_scavange(),
-        scavange(0)
+        twBot.scavanger()
         })
 scavange_button.pack()
 
