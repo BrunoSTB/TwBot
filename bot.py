@@ -14,7 +14,6 @@ class TwBot:
     def stop(self):
         self.running = False
     
-    # Google Chrome window title
     def prepare_farm(self):
         self.prepare()
         self.wsh.SendKeys("{8}")
