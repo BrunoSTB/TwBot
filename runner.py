@@ -23,14 +23,6 @@ scavange_button = tk.Button(text="Scavange",
         })
 scavange_button.pack()
 
-full_button = tk.Button(text="Full",
-    width=30,
-    height=2,
-    bg="purple",
-    fg="yellow",
-    command=twBot.full)
-full_button.pack()
-
 cancel_button = tk.Button(text="Cancel",
     width=30,
     height=2,

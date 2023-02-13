@@ -33,7 +33,7 @@ class TwBot:
         if self.counter >= 1000:
             self.stop()
         self.counter += 1
-        self.window.after(225, lambda : self.farm())
+        self.window.after(225, lambda : self.consume_farm_list())
     
     def prepare_scavange(self):
         self.prepare()
@@ -55,7 +55,7 @@ class TwBot:
         self.scavanger()
         time.sleep(5)
         self.prepare_farm()
-        self.farm(0)
+        self.farm()
         
     def prepare(self):
         self.start()
