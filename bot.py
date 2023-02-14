@@ -28,12 +28,12 @@ class TwBot:
         time.sleep(2)
     
     def consume_farm_list(self):
-        if self.running:
-            self.wsh.SendKeys("{m}")
         if self.counter >= 1000:
             self.stop()
-        self.counter += 1
-        self.window.after(225, lambda : self.consume_farm_list())
+        if self.running:
+            self.wsh.SendKeys("{m}")
+            self.counter += 1
+            self.window.after(225, lambda : self.consume_farm_list())
     
     def prepare_scavange(self):
         self.prepare()
@@ -50,13 +50,6 @@ class TwBot:
             self.wsh.SendKeys("{d}")
             time.sleep(5)
             
-    def full(self):
-        self.prepare_scavange()
-        self.scavanger()
-        time.sleep(5)
-        self.prepare_farm()
-        self.farm()
-        
     def prepare(self):
         self.start()
         self.countdown()
