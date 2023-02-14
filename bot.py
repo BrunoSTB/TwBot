@@ -30,7 +30,7 @@ class TwBot:
     def consume_farm_list(self):
         if self.counter >= 1000:
             self.stop()
-        if self.running:
+        elif self.running:
             self.wsh.SendKeys("{m}")
             self.counter += 1
             self.window.after(225, lambda : self.consume_farm_list())
