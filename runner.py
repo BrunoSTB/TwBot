@@ -8,29 +8,50 @@ farm_button = tk.Button(text="Farm",
     width=30,
     height=2,
     bg="blue",
+    activebackground="yellow",
+    activeforeground="red",
     fg="yellow",
-    command=twBot.farm)
+    command=lambda: {
+        farm_button.configure(bg="yellow", fg="red"),
+        twBot.farm()})
 farm_button.pack()
 
-scavange_button = tk.Button(text="Scavange",
-    width=30,
-    height=2,
-    bg="green",
-    fg="yellow",
-    command=lambda : {
-        twBot.prepare_scavange(),
-        twBot.scavanger()
-        })
-scavange_button.pack()
-
-cancel_button = tk.Button(text="Cancel",
+cancel_farm_button = tk.Button(text="Cancel Farm",
     width=30,
     height=2,
     bg="red",
     fg="yellow",
-    command=twBot.stop)
-cancel_button.pack()
+    command=lambda: {
+        reset_button_colors(),
+        twBot.stop()})
+cancel_farm_button.pack()
 
+loop_farm_button = tk.Button(text="Farm Loop",
+    width=30,
+    height=2,
+    bg="green",
+    activebackground="yellow",
+    activeforeground="red",
+    fg="yellow",
+    command=lambda : {
+        twBot.farm_loop(),
+        loop_farm_button.configure(bg="yellow", fg="red")})
+loop_farm_button.pack()
+
+cancel_farm_loop_button = tk.Button(text="Cancel Farm Loop",
+    width=30,
+    height=2,
+    bg="red",
+    fg="yellow",
+    command=lambda: {
+        reset_button_colors(),
+        twBot.stop_loop()})
+cancel_farm_loop_button.pack()
+
+def reset_button_colors():
+    farm_button.configure(bg="blue", fg="yellow")
+    loop_farm_button.configure(bg="green", fg="yellow")
+    
 window.mainloop()
 
 
