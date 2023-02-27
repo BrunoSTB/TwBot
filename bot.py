@@ -8,7 +8,7 @@ class TwBot:
         self._farm_loop_job = None
         self._farm_job = None
         self.plundered_villages = 0
-        self.farm_loop_time = 60000 * 10 # measured in miliseconds
+        self.farm_loop_time = 60000 * 3 # measured in miliseconds
         self.number_of_villages_plunder = 1000
     
     def farm(self):
