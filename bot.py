@@ -8,13 +8,19 @@ class TwBot:
         self._farm_loop_job = None
         self._farm_job = None
         self.plundered_villages = 0
-        self.farm_loop_time = 60000 * 3 # measured in miliseconds
+        self.farm_loop_time = 60000 * 5 # measured in miliseconds
         self.number_of_villages_plunder = 1000
+        
+    def define_buttons(self, _farm_button, _farm_loop_button):
+        self.farm_button = _farm_button
+        self.farm_loop_button = _farm_loop_button
     
     def farm(self):
+        self.farm_button.configure(bg="yellow", fg="red")
         self.prepare_farm_list()
         
     def farm_loop(self):
+        self.farm_loop_button.configure(bg="yellow", fg="red")
         self.farm()
         self._farm_loop_job = self.window.after(self.farm_loop_time, lambda : self.farm_loop())
     
@@ -58,9 +64,11 @@ class TwBot:
             self._farm_job = None
             self.is_consume_farm_list_running = False
             self.plundered_villages = 0
+            self.farm_button.configure(bg="blue", fg="yellow")
     
     def stop_loop(self):
         if self._farm_loop_job is not None:
             self.stop()
             self.window.after_cancel(self._farm_loop_job)
             self._farm_loop_job = None
+            self.farm_loop_button.configure(bg="green", fg="yellow")

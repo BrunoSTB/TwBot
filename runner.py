@@ -11,9 +11,7 @@ farm_button = tk.Button(text="Farm",
     activebackground="yellow",
     activeforeground="red",
     fg="yellow",
-    command=lambda: {
-        farm_button.configure(bg="yellow", fg="red"),
-        twBot.farm()})
+    command=twBot.farm)
 farm_button.pack()
 
 cancel_farm_button = tk.Button(text="Cancel Farm",
@@ -21,9 +19,7 @@ cancel_farm_button = tk.Button(text="Cancel Farm",
     height=2,
     bg="red",
     fg="yellow",
-    command=lambda: {
-        reset_button_colors(),
-        twBot.stop()})
+    command=twBot.stop)
 cancel_farm_button.pack()
 
 loop_farm_button = tk.Button(text="Farm Loop",
@@ -33,9 +29,7 @@ loop_farm_button = tk.Button(text="Farm Loop",
     activebackground="yellow",
     activeforeground="red",
     fg="yellow",
-    command=lambda : {
-        twBot.farm_loop(),
-        loop_farm_button.configure(bg="yellow", fg="red")})
+    command=twBot.farm_loop)
 loop_farm_button.pack()
 
 cancel_farm_loop_button = tk.Button(text="Cancel Farm Loop",
@@ -43,15 +37,11 @@ cancel_farm_loop_button = tk.Button(text="Cancel Farm Loop",
     height=2,
     bg="red",
     fg="yellow",
-    command=lambda: {
-        reset_button_colors(),
-        twBot.stop_loop()})
+    command=twBot.stop_loop)
 cancel_farm_loop_button.pack()
 
-def reset_button_colors():
-    farm_button.configure(bg="blue", fg="yellow")
-    loop_farm_button.configure(bg="green", fg="yellow")
-    
+twBot.define_buttons(farm_button, loop_farm_button)
+
 window.mainloop()
 
 
